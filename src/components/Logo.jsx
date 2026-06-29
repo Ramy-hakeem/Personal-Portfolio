@@ -1,17 +1,25 @@
 import { motion } from "framer-motion";
 
-const Logo = ({ className = "w-12 h-12" }) => {
+const Logo = ({ className = "w-12 h-12", isPageTransition = false }) => {
   return (
     <div className="relative group">
       <motion.div
-        animate={{
-          scale: [1, 1.05, 1],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={
+          isPageTransition
+            ? {}
+            : {
+                scale: [1, 1.05, 1],
+              }
+        }
+        transition={
+          isPageTransition
+            ? {}
+            : {
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }
+        }
       >
         <svg className={className} viewBox="0 0 120 100">
           {/* Background */}
@@ -73,7 +81,11 @@ const Logo = ({ className = "w-12 h-12" }) => {
                 rx="2"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.01, duration: 0.3 }}
+                transition={{
+                  delay: isPageTransition ? i * 0.03 + 0.1 : i * 0.01,
+                  duration: isPageTransition ? 0.4 : 0.3,
+                  ease: "backOut",
+                }}
               />
             ))}
           </g>
@@ -104,7 +116,11 @@ const Logo = ({ className = "w-12 h-12" }) => {
                 rx="2"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.01 + 0.2, duration: 0.3 }}
+                transition={{
+                  delay: isPageTransition ? i * 0.03 + 0.35 : i * 0.01 + 0.2,
+                  duration: isPageTransition ? 0.4 : 0.3,
+                  ease: "backOut",
+                }}
               />
             ))}
           </g>
@@ -126,16 +142,6 @@ const Logo = ({ className = "w-12 h-12" }) => {
             animate={{ opacity: [0, 1, 0] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
           />
-
-          {/* Optional: Add a decorative element between letters */}
-          <motion.div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 0.3, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-          >
-            <circle cx="60" cy="40" r="2" fill="#D946EF" opacity="0.5" />
-          </motion.div>
         </svg>
       </motion.div>
 
