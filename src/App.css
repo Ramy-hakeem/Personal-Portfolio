@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand color stays constant */
+  --color-brand: #cd5ff8;
+  --color-brand-light: #e0aaff;
+
+  /* Functional Variables - These change based on the class */
+  --color-main-bg: var(--bg-primary);
+  --color-main-text: var(--text-primary);
+  --color-sub-text: var(--text-secondary);
+  --color-glass-bg: var(--glass-surface);
+  --color-glass-border: var(--glass-outline);
+}
+
+/* --- DARK MODE VARIABLES (Default) --- */
+:root {
+  --bg-primary: #0f021a;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af; /* gray-400 */
+  --glass-surface: rgba(255, 255, 255, 0.03);
+  --glass-outline: rgba(255, 255, 255, 0.1);
+  --aura-color-1: rgba(205, 95, 248, 0.2);
+  --aura-color-2: rgba(147, 51, 234, 0.1);
+}
+
+/* --- LIGHT MODE VARIABLES (PROFESSIONAL THEME) --- */
+html.light {
+  /* Backgrounds */
+  --bg-primary: #f9fafb; /* soft gray */
+  --bg-secondary: #ffffff;
+
+  /* Text */
+  --text-primary: #111827; /* slate-900 */
+  --text-secondary: #6b7280; /* gray-500 */
+
+  /* Glass / Cards */
+  --glass-surface: rgba(255, 255, 255, 0.85);
+  --glass-outline: rgba(0, 0, 0, 0.08);
+
+  /* Aura (Very Subtle) */
+  --aura-color-1: rgba(205, 95, 248, 0.08);
+  --aura-color-2: rgba(147, 51, 234, 0.04);
+}
+
+/* Global Transitions */
+* {
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Global Utility for Glass */
+.glass {
+  background: var(--glass-surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-outline);
+}
+
+/* Tailwind fixes for Light Mode */
+
+html.light .text-gray-400 {
+  color: var(--text-secondary);
+}
+
+html.light .text-gray-500 {
+  color: #6b7280;
+}
+
+html.light .text-white {
+  color: var(--text-primary);
+}
+
+html.light .bg-white\/5 {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Light mode glass refinement */
+html.light .glass {
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Inputs - Light Mode */
+html.light input,
+html.light textarea {
+  background-color: #ffffff;
+  color: var(--text-primary);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #9ca3af;
+}
+
+html.light input:focus,
+html.light textarea:focus {
+  background-color: #ffffff;
+  border-color: var(--color-brand);
+}
